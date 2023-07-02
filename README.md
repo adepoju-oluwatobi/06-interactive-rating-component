@@ -5,12 +5,12 @@ This is a solution to the [Interactive rating component challenge on Frontend Me
 ## Table of contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Links](#links)
+- [The challenge](#the-challenge)
+- [Links](#links)
 - [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Useful resources](#useful-resources)
+- [Built with](#built-with)
+- [What I learned](#what-i-learned)
+- [Useful resources](#useful-resources)
 - [Author](#author)
 
 **Note: Delete this note and update the table of contents based on what sections you keep.**
