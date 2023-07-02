@@ -5,7 +5,7 @@ import IllustrationIcon from '../assets/illustration-thank-you.svg'
 
 function Ratings() {
   {/** State to collect star input */}
-  const [star, setStar] = useState();
+  const [star, setStar] = useState(0);
   {/** state to store the star and render it as a rating */}
   let [rating, setRating] = useState("");
 
@@ -16,6 +16,7 @@ function Ratings() {
   let threeStarBtn = document.getElementById('three-star');
   let fourStarBtn = document.getElementById('four-star');
   let fiveStarBtn = document.getElementById('five-star');
+  let warning = document.getElementById('warning');
 
   let oneStar = () => {
     setStar(1);
@@ -24,6 +25,7 @@ function Ratings() {
     threeStarBtn = document.getElementById('three-star').style.background = "";
     fourStarBtn = document.getElementById('four-star').style.background = "";
     fiveStarBtn = document.getElementById('five-star').style.background = "";
+    warning = document.getElementById('warning').style.display = "none"
     console.log(star);
   }
 
@@ -34,6 +36,7 @@ function Ratings() {
     threeStarBtn = document.getElementById('three-star').style.background = "";
     fourStarBtn = document.getElementById('four-star').style.background = "";
     fiveStarBtn = document.getElementById('five-star').style.background = "";
+    warning = document.getElementById('warning').style.display = "none"
     console.log(star);
   }
 
@@ -44,6 +47,7 @@ function Ratings() {
     threeStarBtn = document.getElementById('three-star').style.background = "black";
     fourStarBtn = document.getElementById('four-star').style.background = "";
     fiveStarBtn = document.getElementById('five-star').style.background = "";
+    warning = document.getElementById('warning').style.display = "none"
     console.log(star);
   }
 
@@ -54,6 +58,7 @@ function Ratings() {
     threeStarBtn = document.getElementById('three-star').style.background = "";
     fourStarBtn = document.getElementById('four-star').style.background = "black";
     fiveStarBtn = document.getElementById('five-star').style.background = "";
+    warning = document.getElementById('warning').style.display = "none"
     console.log(star);
   }
 
@@ -64,24 +69,50 @@ function Ratings() {
     threeStarBtn = document.getElementById('three-star').style.background = "";
     fourStarBtn = document.getElementById('four-star').style.background = "";
     fiveStarBtn = document.getElementById('five-star').style.background = "black";
+    warning = document.getElementById('warning').style.display = "none"
     console.log(star);
   }
 
+  {/** submit handler */}
   const submit = () => {
     setRating(star)
-    ratePage = document.getElementById('rate').style.display = "none";
-    successPage = document.getElementById('success-page').style.display = "block";
-    console.log(rating);
+    {/** This condition validates if the user input a rating */}
+    if(star == 0)
+    {
+      warning = document.getElementById('warning').style.display = "block"
+    } else {
+      ratePage = document.getElementById('rate').style.display = "none";
+      successPage = document.getElementById('success-page').style.display = "block";
+      console.log(rating);
+    }
   }
+
+  {/**A function to close the success page */}
+  function close(){
+    setStar(0)
+      ratePage = document.getElementById('rate').style.display = "block";
+      successPage = document.getElementById('success-page').style.display = "none"; 
+
+      oneStarBtn = document.getElementById('one-star').style.background = "";
+    twoStarBtn = document.getElementById('two-star').style.background = "";
+    threeStarBtn = document.getElementById('three-star').style.background = "";
+    fourStarBtn = document.getElementById('four-star').style.background = "";
+    fiveStarBtn = document.getElementById('five-star').style.background = "";
+    }
   return (
     <div>
       <div className='w-[320px] h-[320px] bg-[#252d37] rounded-2xl p-6' id='rate'>
-      <div className='bg-[#191f26] rounded-full w-fit p-4 flex justify-center items-center'>
+      <div className='flex items-center'>
+        <div className='bg-[#191f26] rounded-full w-fit p-4 flex justify-center items-center'>
         <img src={Star} alt="" />
+      </div>
+      <div className='text-center bg-[#3e4957] rounded-full p-1 text-[#fb7413] w-[60%] m-auto hidden' id='warning'>
+        <p className='opacity-80 text-sm'>Please select a rating</p>
+      </div>
       </div>
       <div className='py-3'>
         <p className='text-white text-xl font-bold pb-2'>
-          How did we do?{rating}
+          How did we do?
         </p>
         <p className='text-white opacity-50 text-sm w-[32ch]'>
           Please let us know how we did with your support request.
@@ -115,7 +146,14 @@ function Ratings() {
       </div>
     </div>
 
+      {/** SUCCESS COMPONENT */}
+
     <div className='w-[320px] h-[320px] bg-[#252d37] rounded-2xl p-6 hidden' id='success-page'>
+      <div className='absolute ml-[20%] cursor-pointer' id='close-btn' onClick={close}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+        </svg>
+      </div>
       <div className='flex justify-center'>
         <img src={IllustrationIcon} alt="" />
       </div>
